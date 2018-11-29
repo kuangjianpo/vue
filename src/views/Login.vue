@@ -15,12 +15,15 @@
         </div>
         <el-form-item prop="username">
           <el-input
+            prefix-icon="el-icon-search"
             v-model="loginForm.username"
             placeholder="用户名"
           ></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input
+            prefix-icon="el-icon-search"
+            type="password"
             v-model="loginForm.password"
             placeholder="密码"
           ></el-input>
@@ -46,9 +49,7 @@ export default {
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur' }
         ],
-        password: [
-          { required: true, message: '请输入密码', trigger: 'blur' }
-        ]
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
       }
     }
   }
