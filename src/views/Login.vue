@@ -15,14 +15,14 @@
         </div>
         <el-form-item prop="username">
           <el-input
-            prefix-icon="el-icon-search"
+            prefix-icon="myicon myicon-user"
             v-model="loginForm.username"
             placeholder="用户名"
           ></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input
-            prefix-icon="el-icon-search"
+            prefix-icon="myicon myicon-key"
             type="password"
             v-model="loginForm.password"
             placeholder="密码"
@@ -31,6 +31,7 @@
         <el-button
           type="primary"
           class="login-btn"
+          @click = 'login("loginForm")'
         >登录</el-button>
       </el-form>
     </div>
@@ -38,6 +39,9 @@
 </template>
 
 <script>
+
+import {login} from '@/api/index.js'
+
 export default {
   data () {
     return {
@@ -51,6 +55,25 @@ export default {
         ],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
       }
+    }
+  },
+  methods: {
+    login (formname) {
+      this.$refs[formname].validate((valid) => {
+        if (valid) {
+          login(this.loginForm)
+            .then((result) => {
+              if (result.meta.status === 200) {
+                localStorage.setItem('itcast_token', result.data.token)
+                // console.log(result)
+                this.$router.push({name: 'Home'})
+              } else {
+                this.$message.error('登录失败：用户名或密码有误')
+                return false
+              }
+            })
+        }
+      })
     }
   }
 }
