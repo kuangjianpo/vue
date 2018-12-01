@@ -9,7 +9,7 @@
       >
         <div class="avatar">
           <img
-            src="../assets/logo.png"
+            src="../assets/logo1.png"
             alt=""
           >
         </div>
@@ -31,7 +31,7 @@
         <el-button
           type="primary"
           class="login-btn"
-          @click = 'login("loginForm")'
+          @click='login("loginForm")'
         >登录</el-button>
       </el-form>
     </div>
@@ -39,8 +39,7 @@
 </template>
 
 <script>
-
-import {login} from '@/api/index.js'
+import { login } from '@/api/index.js'
 
 export default {
   data () {
@@ -59,19 +58,18 @@ export default {
   },
   methods: {
     login (formname) {
-      this.$refs[formname].validate((valid) => {
+      this.$refs[formname].validate(valid => {
         if (valid) {
-          login(this.loginForm)
-            .then((result) => {
-              if (result.meta.status === 200) {
-                localStorage.setItem('itcast_token', result.data.token)
-                // console.log(result)
-                this.$router.push({name: 'Home'})
-              } else {
-                this.$message.error('登录失败：用户名或密码有误')
-                return false
-              }
-            })
+          login(this.loginForm).then(result => {
+            if (result.meta.status === 200) {
+              localStorage.setItem('itcast_token', result.data.token)
+              // console.log(result)
+              this.$router.push({ name: 'Home' })
+            } else {
+              this.$message.error('登录失败：用户名或密码有误')
+              return false
+            }
+          })
         }
       })
     }

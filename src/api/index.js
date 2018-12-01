@@ -17,10 +17,27 @@ axios.interceptors.request.use(function (config) {
   return Promise.reject(error)
 })
 
+// 登录验证
 export const login = (pa) => {
   return axios.post('login', pa)
     .then((result) => {
-    //   console.log(result.data)
+      //   console.log(result.data)
+      return result.data
+    })
+}
+
+// 获取用户数据
+export const GetUserList = (pa) => {
+  return axios.get('users', {params: pa})
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 添加用户
+export const addUser = (pa) => {
+  return axios.post('users', pa)
+    .then((result) => {
       return result.data
     })
 }
