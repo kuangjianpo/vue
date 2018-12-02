@@ -34,9 +34,49 @@ export const GetUserList = (pa) => {
     })
 }
 
-// 添加用户
+// 添加用户数据
 export const addUser = (pa) => {
   return axios.post('users', pa)
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 编辑用户数据
+export const editUser = (pa) => {
+  return axios.put(`users/${pa.id}`, pa)
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 删除用户数据
+export const deleteUserById = (id) => {
+  return axios.delete(`users/${id}`)
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 获取角色列表
+export const GetGrantList = (id) => {
+  return axios.get('roles')
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 用户角色授权
+export const grantUserById = (pa) => {
+  return axios.put(`users/${pa.id}/role`, {rid: pa.rid})
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 改变用户状态
+export const changeUserState = (id, type) => {
+  return axios.put(`users/${id}/state/${type}`)
     .then((result) => {
       return result.data
     })
