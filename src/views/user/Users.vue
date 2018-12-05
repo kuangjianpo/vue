@@ -242,7 +242,7 @@
       >
         <el-form-item
           prop="username"
-          label="用户名"
+          label="用户名："
         >
           <el-input
             v-model="grantform.username"
@@ -250,10 +250,14 @@
             disabled
           ></el-input>
         </el-form-item>
+          <label
+          class="el-form-item__label"
+          style="width: 100px;"
+        >角色：</label>
         <el-select
           v-model="grantform.rid"
           placeholder="请选择"
-        >
+          >
           <el-option
             v-for="item in rolesList"
             :key="item.id"
@@ -277,7 +281,15 @@
   </div>
 </template>
 <script>
-import { GetUserList, addUser, editUser, deleteUserById, GetGrantList, grantUserById, changeUserState } from '@/api'
+import {
+  GetUserList,
+  addUser,
+  editUser,
+  deleteUserById,
+  GetGrantList,
+  grantUserById,
+  changeUserState
+} from '@/api'
 
 export default {
   data () {

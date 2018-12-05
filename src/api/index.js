@@ -26,6 +26,8 @@ export const login = (pa) => {
     })
 }
 
+// --------------用户列表-------------------
+
 // 获取用户数据
 export const GetUserList = (pa) => {
   return axios.get('users', {params: pa})
@@ -77,6 +79,65 @@ export const grantUserById = (pa) => {
 // 改变用户状态
 export const changeUserState = (id, type) => {
   return axios.put(`users/${id}/state/${type}`)
+    .then((result) => {
+      return result.data
+    })
+}
+
+//  -------------权限列表-----------------
+// 获取权限列表
+export const GetRightList = (type) => {
+  return axios.get(`rights/${type}`)
+    .then((result) => {
+      return result.data
+    })
+}
+
+//  -------------角色列表-----------------
+
+// 新增角色
+export const addRole = (pa) => {
+  return axios.post('roles', pa)
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 删除角色
+export const deleteRole = (id) => {
+  return axios.delete(`roles/${id}`)
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 角色授权
+export const grantRole = (roleId, rids) => {
+  return axios.post(`roles/${roleId}/rights`, {rids})
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 删除角色权限
+export const deleteRoleRight = (roleId, rightId) => {
+  return axios.delete(`roles/${roleId}/rights/${rightId}`)
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 编辑角色
+export const editRole = (id, pa) => {
+  return axios.put(`roles/${id}`, pa)
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 根据id查找角色
+export const GetRoleById = (id) => {
+  return axios.get(`roles/${id}`)
     .then((result) => {
       return result.data
     })
