@@ -45,8 +45,8 @@ export default {
   data () {
     return {
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       },
       rules: {
         username: [
@@ -63,6 +63,7 @@ export default {
           login(this.loginForm).then(result => {
             if (result.meta.status === 200) {
               localStorage.setItem('itcast_token', result.data.token)
+              this.$store.dispatch('setUsernameAction', result.data.username)
               // console.log(result)
               this.$router.push({ name: 'Home' })
             } else {

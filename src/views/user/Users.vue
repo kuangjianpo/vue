@@ -1,7 +1,7 @@
 <template>
   <div class="users">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>用户管理</el-breadcrumb-item>
       <el-breadcrumb-item>用户列表</el-breadcrumb-item>
     </el-breadcrumb>
@@ -497,7 +497,7 @@ export default {
               })
               this.init()
             } else {
-              this.$message.error('删除失败')
+              this.$message.warning(result.meta.msg)
               return false
             }
           })

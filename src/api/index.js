@@ -142,3 +142,68 @@ export const GetRoleById = (id) => {
       return result.data
     })
 }
+
+// 获取左侧菜单权限
+export const getMenuRight = () => {
+  return axios.get('menus')
+    .then((result) => {
+      return result.data
+    })
+}
+
+//  -------------商品列表-----------------
+// 获取商品列表数据
+export const getGoodsList = (pa) => {
+  return axios.get('goods', {params: pa})
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 获取商品分类列表
+export const getCateList = (type) => {
+  return axios.get('categories', {params: {type: type}})
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 添加商品
+export const addGoods = (pa) => {
+  return axios.post('goods', pa)
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 添加商品分类
+export const addCategories = (pa) => {
+  return axios.post('categories', pa)
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 根据id查询分类
+export const getCateById = (id) => {
+  return axios.get(`categories/${id}`)
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 根据id编辑分类
+export const editCateById = (id, pa) => {
+  return axios.put(`categories/${id}`, pa)
+    .then((result) => {
+      return result.data
+    })
+}
+
+// 根据id删除分类
+export const deleteCateById = (id) => {
+  return axios.delete(`categories/${id}`)
+    .then((result) => {
+      return result.data
+    })
+}
